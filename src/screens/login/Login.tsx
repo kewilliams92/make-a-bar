@@ -4,10 +4,12 @@ import { AuthForm } from "../../types/Forms";
 import { SubmitHandler, createForm, zodForm } from "@modular-forms/solid";
 import { z } from "zod";
 import { Typography, Box, Stack, Button, ButtonGroup, Card } from "@suid/material";
+import useAuthenticate from "../../hooks/useAuthenticate";
 
 
 
 const LoginScreen: Component = () => {
+    const { loading, authUser } = useAuthenticate("login")
     const { handleInput, submitForm } = useForm<AuthForm>({
         email: "",
         password: "",
@@ -25,7 +27,8 @@ const LoginScreen: Component = () => {
       });
     
       const handleSubmit: SubmitHandler<AuthForm> =  (values, event) => {
-        console.log(values);
+        event.preventDefault();
+        authUser(values)
       };
     
       return (
@@ -85,9 +88,9 @@ const LoginScreen: Component = () => {
                 )}
               </Field>
               <ButtonGroup variant="contained" fullWidth>
-                <Button type="submit" variant="contained" color="primary">Login</Button>
+                <Button disabled={loading()} type="submit" variant="contained" color="primary">Login</Button>
               </ButtonGroup>
-              <Typography variant="body2" align="center" color="#415A77" padding={2}>Need an account? <a href="/register">Sign up now!</a></Typography>
+              <Typography variant="body2" align="center" color="#415A77" padding={2}>Need an account? <a href="/auth/register">Sign up now!</a></Typography>
             </Form>
           </Stack>
           </Card>

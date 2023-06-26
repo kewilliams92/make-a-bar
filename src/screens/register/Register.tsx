@@ -4,17 +4,10 @@ import { RegisterForm } from "../../types/Forms";
 import { SubmitHandler, createForm, zodForm } from "@modular-forms/solid";
 import { z } from "zod";
 import { Typography, Box, Stack, Button, ButtonGroup, Card } from "@suid/material";
-
-type Register = {
-  fullName: string;
-  nickName: string;
-  email: string;
-  avatar: string;
-  password: string;
-  confirmPassword: string;
-}
+import  useAuthenticate from "../../hooks/useAuthenticate";
 
 const RegisterScreen: Component = () => {
+  const { authUser, loading } = useAuthenticate("register")
   const { handleInput, submitForm } = useForm<RegisterForm>({
     fullName: "",
     nickName: "",
@@ -41,6 +34,7 @@ const RegisterScreen: Component = () => {
 
   const handleSubmit: SubmitHandler<RegisterForm> =  (values, event) => {
     console.log(values);
+    authUser(values)
   };
 
   return (
@@ -145,9 +139,9 @@ const RegisterScreen: Component = () => {
             )}
           </Field>
           <ButtonGroup variant="contained" fullWidth>
-            <Button type="submit" variant="contained" color="primary">Register</Button>
+            <Button disabled={loading()} type="submit" variant="contained" color="primary">Register</Button>
           </ButtonGroup>
-          <Typography variant="body2" align="center" color="#415A77" padding={2}>Already have an account? <a href="/login">Login</a></Typography>
+          <Typography variant="body2" align="center" color="#415A77" padding={2}>Already have an account? <a href="/auth/login">Login</a></Typography>
         </Form>
       </Stack>
       </Card>
