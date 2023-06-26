@@ -83,7 +83,7 @@ const RegisterScreen: Component = () => {
               <>
                 <h5>Full Name</h5>
                 <div style={{padding: "10px"}}>
-                <input {...props} type="fullName" required size={40}/>
+                <input {...props} height={"100px"} type="fullName" required size={40} placeholder="Enter your full name.."/>
                 {field.error && <div style={{"text-align": "center", "color": "red"}}>{field.error}</div>}
                 </div>
               </>
@@ -92,9 +92,9 @@ const RegisterScreen: Component = () => {
           <Field name="nickName">
             {(field, props) => (
               <>
-                <h5>Nick Name</h5>
+                <h5>Nickname</h5>
                 <div style={{padding: "10px"}}>
-                <input {...props} type="nickName" required size={40}/>
+                <input {...props} type="nickName" required size={40} placeholder="Enter your nickname.."/>
                 {field.error && <div style={{"text-align": "center", "color": "red"}}>{field.error}</div>}
                 </div>
               </>
@@ -105,7 +105,7 @@ const RegisterScreen: Component = () => {
               <>
                 <h5>Email</h5>
                 <div style={{padding: "10px"}}>
-                <input {...props} type="email" required size={40} />
+                <input {...props} type="email" required size={40} placeholder="Enter your email.." />
                 {field.error && <div style={{"text-align": "center", "color": "red"}}>{field.error}</div>}
                 </div>
               </>
@@ -116,7 +116,7 @@ const RegisterScreen: Component = () => {
               <>
                 <h5>Avatar</h5>
                 <div style={{padding: "10px"}}>
-                <input {...props} type="avatar" required size={40}/>
+                <input {...props} type="avatar" required size={40} placeholder="Submit a link to a picture.."/>
                 {field.error && <div style={{"text-align": "center", "color": "red"}}>{field.error}</div>}
                 </div>
               </>
@@ -127,7 +127,7 @@ const RegisterScreen: Component = () => {
               <>
                 <h5>Password</h5>
                 <div style={{padding: '10px'}}>
-                <input {...props} type="password" required size={40}/>
+                <input {...props} type="password" required size={40} placeholder="Enter a password.."/>
                 {field.error && <div style={{"text-align": "center", "color": "red"}}>{field.error}</div>}
                 </div>
               </>
@@ -138,7 +138,7 @@ const RegisterScreen: Component = () => {
               <>
                 <h5>Confirm Password</h5>
                 <div style={{padding: "10px"}}>
-                <input {...props} type="password" required size={40}/>
+                <input {...props} type="password" required size={40} placeholder="Confirm your password.."/>
                 {field.error && <div style={{"text-align": "center", "color": "red"}}>{field.error}</div>}
                 </div>
               </>
@@ -146,8 +146,8 @@ const RegisterScreen: Component = () => {
           </Field>
           <ButtonGroup variant="contained" fullWidth>
             <Button type="submit" variant="contained" color="primary">Register</Button>
-            <Button type="reset" variant="contained" color="error">Reset</Button>
           </ButtonGroup>
+          <Typography variant="body2" align="center" color="#415A77" padding={2}>Already have an account? <a href="/login">Login</a></Typography>
         </Form>
       </Stack>
       </Card>
